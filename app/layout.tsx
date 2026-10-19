@@ -4,8 +4,8 @@ import './globals.css'
 
 // Métadonnées par défaut de toutes les pages : titre de l'onglet et description.
 export const metadata: Metadata = {
-  title: 'Royaumes',
-  description: 'Jeu multijoueur - monolithe modulaire',
+    title: 'Royaumes',
+    description: 'Jeu multijoueur - monolithe modulaire',
 }
 
 /**
@@ -16,11 +16,11 @@ export const metadata: Metadata = {
  * sur un dépôt fraîchement cloné.
  */
 export default function RootLayout({ children }: { children: ReactNode }) {
-  return (
-    <html lang="fr">
-      <body>
-        <main>{children}</main>
-      </body>
-    </html>
-  )
+    return (
+        <html lang="fr">
+            <body>
+                <main>{children}</main>
+            </body>
+        </html>
+    )
 }
