@@ -26,12 +26,12 @@ export const MAX_LEVEL = 10
  * et par niveau, et le coût de la première amélioration.
  */
 export const CATALOG: Record<
-    Building,
-    { produces: Resource; perMinute: number; baseCost: Partial<Stock> }
+  Building,
+  { produces: Resource; perMinute: number; baseCost: Partial<Stock> }
 > = {
-    sawmill: { produces: 'wood', perMinute: 10, baseCost: { wood: 40, stone: 20 } },
-    quarry: { produces: 'stone', perMinute: 6, baseCost: { wood: 60, stone: 10 } },
-    mine: { produces: 'gold', perMinute: 2, baseCost: { wood: 80, stone: 60 } },
+  sawmill: { produces: 'wood', perMinute: 10, baseCost: { wood: 40, stone: 20 } },
+  quarry: { produces: 'stone', perMinute: 6, baseCost: { wood: 60, stone: 10 } },
+  mine: { produces: 'gold', perMinute: 2, baseCost: { wood: 80, stone: 60 } },
 }
 
 /** Exposant de la règle de coût : coût de base × (niveau + 1) ^ COST_EXPONENT. */

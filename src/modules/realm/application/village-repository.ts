@@ -6,17 +6,17 @@ import type { VillageEvent, VillageState } from '../domain/village'
  * tout du stockage concret, fourni par un adaptateur de l'infrastructure.
  */
 export interface VillageRepository {
-    /**
-     * Charge l'état du village d'un joueur, reconstruit à partir de ses événements,
-     * ainsi que sa version : le nombre d'événements déjà enregistrés.
-     */
-    load(userId: string): Promise<{ state: VillageState; version: number }>
+  /**
+   * Charge l'état du village d'un joueur, reconstruit à partir de ses événements,
+   * ainsi que sa version : le nombre d'événements déjà enregistrés.
+   */
+  load(userId: string): Promise<{ state: VillageState; version: number }>
 
-    /**
-     * Enregistre de nouveaux événements à la suite des précédents.
-     * expectedVersion est la version lue au chargement : si d'autres événements
-     * ont été enregistrés entre-temps, l'enregistrement est refusé par une
-     * ConcurrencyError, l'erreur du journal d'événements de la plateforme.
-     */
-    save(userId: string, expectedVersion: number, events: VillageEvent[]): Promise<void>
+  /**
+   * Enregistre de nouveaux événements à la suite des précédents.
+   * expectedVersion est la version lue au chargement : si d'autres événements
+   * ont été enregistrés entre-temps, l'enregistrement est refusé par une
+   * ConcurrencyError, l'erreur du journal d'événements de la plateforme.
+   */
+  save(userId: string, expectedVersion: number, events: VillageEvent[]): Promise<void>
 }

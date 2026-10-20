@@ -6,14 +6,14 @@ import { ConcurrencyError } from './event-store'
  * Toute autre erreur, ou un conflit persistant au-delà de maxAttempts, est transmise.
  */
 export async function withOptimisticRetry<T>(
-    operation: () => Promise<T>,
-    maxAttempts = 3,
+  operation: () => Promise<T>,
+  maxAttempts = 3,
 ): Promise<T> {
-    for (let attempt = 1; ; attempt++) {
-        try {
-            return await operation()
-        } catch (error) {
-            if (!(error instanceof ConcurrencyError) || attempt >= maxAttempts) throw error
-        }
+  for (let attempt = 1; ; attempt++) {
+    try {
+      return await operation()
+    } catch (error) {
+      if (!(error instanceof ConcurrencyError) || attempt >= maxAttempts) throw error
     }
+  }
 }

@@ -4,10 +4,10 @@
  * aucun module, reçoit ces règles de la racine de composition.
  */
 export interface ChannelPolicy {
-    /** Préfixe des canaux concernés, par exemple « village- ». */
-    prefix: string
-    /** Indique si un joueur a le droit d'écouter un canal portant ce préfixe. */
-    canSubscribe(channel: string, userId: string): boolean | Promise<boolean>
+  /** Préfixe des canaux concernés, par exemple « village- ». */
+  prefix: string
+  /** Indique si un joueur a le droit d'écouter un canal portant ce préfixe. */
+  canSubscribe(channel: string, userId: string): boolean | Promise<boolean>
 }
 
 /**
@@ -15,10 +15,10 @@ export interface ChannelPolicy {
  * Un canal qu'aucune règle ne couvre est refusé : l'accès est fermé par défaut.
  */
 export async function isAllowed(
-    policies: ChannelPolicy[],
-    channel: string,
-    userId: string,
+  policies: ChannelPolicy[],
+  channel: string,
+  userId: string,
 ): Promise<boolean> {
-    const policy = policies.find((p) => channel.startsWith(p.prefix))
-    return policy ? policy.canSubscribe(channel, userId) : false
+  const policy = policies.find((p) => channel.startsWith(p.prefix))
+  return policy ? policy.canSubscribe(channel, userId) : false
 }

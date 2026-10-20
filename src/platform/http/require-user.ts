@@ -9,12 +9,12 @@ import type { AppEnv } from './types'
  *   où les routes des modules les lisent (c.var.userId, c.var.userName).
  */
 export const requireUser = (auth: AuthPort) =>
-    createMiddleware<AppEnv>(async (c, next) => {
-        const user = await auth.getUser(c.req.raw.headers)
-        if (!user) {
-            return c.json({ error: { code: 'UNAUTHENTICATED', message: 'Connexion requise' } }, 401)
-        }
-        c.set('userId', user.id)
-        c.set('userName', user.name)
-        await next()
-    })
+  createMiddleware<AppEnv>(async (c, next) => {
+    const user = await auth.getUser(c.req.raw.headers)
+    if (!user) {
+      return c.json({ error: { code: 'UNAUTHENTICATED', message: 'Connexion requise' } }, 401)
+    }
+    c.set('userId', user.id)
+    c.set('userName', user.name)
+    await next()
+  })

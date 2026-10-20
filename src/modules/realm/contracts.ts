@@ -13,16 +13,16 @@ export { stockAt } from './domain/village'
 
 /** Corps attendu pour fonder un village. */
 export const FoundVillageInput = z.object({
-    name: z
-        .string()
-        .trim()
-        .min(2, 'Le nom doit comporter au moins 2 caractères')
-        .max(30, 'Le nom doit comporter au plus 30 caractères'),
+  name: z
+    .string()
+    .trim()
+    .min(2, 'Le nom doit comporter au moins 2 caractères')
+    .max(30, 'Le nom doit comporter au plus 30 caractères'),
 })
 
 /** Corps attendu pour améliorer un bâtiment : un bâtiment du catalogue. */
 export const UpgradeBuildingInput = z.object({
-    building: z.enum(BUILDINGS),
+  building: z.enum(BUILDINGS),
 })
 
 /**

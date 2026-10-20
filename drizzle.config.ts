@@ -6,7 +6,7 @@ import { defineConfig } from 'drizzle-kit'
  * schema.ts qui lui est propre ; drizzle-kit les rassemble pour produire les migrations.
  */
 export default defineConfig({
-    dialect: 'postgresql',
-    schema: ['./src/platform/*/schema.ts', './src/modules/*/infrastructure/schema.ts'],
-    out: './drizzle',
+  dialect: 'postgresql',
+  schema: ['./src/platform/*/schema.ts', './src/modules/*/infrastructure/schema.ts'],
+  out: './drizzle',
 })

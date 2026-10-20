@@ -3,5 +3,5 @@
  * Elles sont renseignées par l'intergiciel requireUser, une fois le joueur identifié.
  */
 export interface AppEnv {
-    Variables: { userId: string; userName: string }
+  Variables: { userId: string; userName: string }
 }

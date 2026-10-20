@@ -8,6 +8,6 @@ import { VillageScreen } from '@/modules/realm/ui'
  * La mise en page du groupe (jeu) garantit qu'un joueur est connecté.
  */
 export default async function VillagePage() {
-    const user = await currentUser(await headers())
-    return <VillageScreen userId={user?.id ?? ''} />
+  const user = await currentUser(await headers())
+  return <VillageScreen userId={user?.id ?? ''} />
 }

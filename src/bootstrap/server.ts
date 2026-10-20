@@ -6,11 +6,11 @@ import { type Api, createApi } from './create-api'
 
 /** Ce que l'application expose à Next.js. */
 interface Server {
-    api: Api
-    /** Authentification, utilisée aussi par les pages rendues sur le serveur. */
-    auth: AuthPort
-    /** Résolue lorsque la base de données est prête. */
-    ready: Promise<void>
+  api: Api
+  /** Authentification, utilisée aussi par les pages rendues sur le serveur. */
+  auth: AuthPort
+  /** Résolue lorsque la base de données est prête. */
+  ready: Promise<void>
 }
 
 /**
@@ -28,21 +28,21 @@ const globalForServer = globalThis as unknown as { royaumes?: Server }
  * analyse les fichiers pendant la construction.
  */
 export function getServer(): Server {
-    if (!globalForServer.royaumes) {
-        // La plateforme : la base de données, puis les briques qui l'utilisent.
-        const { db, ready } = createDatabase()
-        const store = createEventStore(db)
-        const auth = createBetterAuth(db)
-        // Durée maximale d'un flux temps réel : 240 s par défaut, sous la limite de 300 s de Vercel.
-        // La variable STREAM_MAX_SECONDS permet de la raccourcir pour observer la reconnexion.
-        const maxStreamMs = Number(process.env.STREAM_MAX_SECONDS ?? 240) * 1000
-        globalForServer.royaumes = {
-            api: createApi({ auth, store, ready, realtime: { maxStreamMs } }),
-            auth,
-            ready,
-        }
+  if (!globalForServer.royaumes) {
+    // La plateforme : la base de données, puis les briques qui l'utilisent.
+    const { db, ready } = createDatabase()
+    const store = createEventStore(db)
+    const auth = createBetterAuth(db)
+    // Durée maximale d'un flux temps réel : 240 s par défaut, sous la limite de 300 s de Vercel.
+    // La variable STREAM_MAX_SECONDS permet de la raccourcir pour observer la reconnexion.
+    const maxStreamMs = Number(process.env.STREAM_MAX_SECONDS ?? 240) * 1000
+    globalForServer.royaumes = {
+      api: createApi({ auth, store, ready, realtime: { maxStreamMs } }),
+      auth,
+      ready,
     }
-    return globalForServer.royaumes
+  }
+  return globalForServer.royaumes
 }
 
 /**
@@ -51,7 +51,7 @@ export function getServer(): Server {
  * à partir des en-têtes de la requête reçue par Next.js.
  */
 export async function currentUser(headers: Headers): Promise<AuthUser | null> {
-    const { auth, ready } = getServer()
-    await ready
-    return auth.getUser(headers)
+  const { auth, ready } = getServer()
+  await ready
+  return auth.getUser(headers)
 }

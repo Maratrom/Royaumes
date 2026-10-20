@@ -7,6 +7,6 @@ export const dynamic = 'force-dynamic'
 
 /** Page d'accueil : oriente vers le village si un joueur est connecté, vers la connexion sinon. */
 export default async function Home() {
-    const user = await currentUser(await headers())
-    redirect(user ? '/village' : '/login')
+  const user = await currentUser(await headers())
+  redirect(user ? '/village' : '/login')
 }
